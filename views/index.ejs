@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+
+    <body>
+        <div class='container w-50 pt-5'>
+            <h1 class='text-center'>Image Generation Using AI</h1>
+
+            <form action='/' method='post'>
+                <input
+                        type='text'
+                        class='form-control mb-2'
+                        placeholder='Enter img params'
+                        required
+                        name='prompt'
+                />
+
+                <select name='size' class='form-control mb-2'>
+                    <option value='256x256'>Small</option>
+                    <option value='512x512'>Medium</option>
+                    <option value='1024x1024'>Large</option>
+                </select>
+
+                <input type='number' class='form-control mb-2' name='number' value='1' />
+
+                <button type='submit' class='btn btn-primary'>Generate</button>
+            </form>
+        </div>
+
+        <div class='container w-50 pt-5'>
+            <% if (images) { %>
+                <div class='row'>
+                    <% images.forEach(({ url }) => { %>
+                        <img src='<%= url %>' class='img-fluid rounded' />
+                    <% }) %>
+                </div>
+            <% } %>
+        </div>
+    </body>
+</html>
+
